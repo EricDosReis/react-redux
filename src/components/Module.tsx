@@ -13,6 +13,15 @@ interface ModuleProps {
 }
 
 export function Module({ amountOfLessons, moduleIndex, title }: ModuleProps) {
+  const { currentLessonIndex, currentModuleIndex } = useAppSelector((state) => {
+    const { currentLessonIndex, currentModuleIndex } = state.player;
+
+    return {
+      currentLessonIndex,
+      currentModuleIndex,
+    };
+  });
+
   const lessons = useAppSelector(
     (state) => state.player.course.modules[moduleIndex].lessons
   );
@@ -40,6 +49,10 @@ export function Module({ amountOfLessons, moduleIndex, title }: ModuleProps) {
             <Lesson
               key={id}
               duration={duration}
+              isCurrent={
+                currentModuleIndex === moduleIndex &&
+                currentLessonIndex === index
+              }
               title={title}
               onPlay={() => dispatch(play({ moduleIndex, lessonIndex: index }))}
             />

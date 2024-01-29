@@ -1,18 +1,30 @@
-import { Video } from "lucide-react";
+import { PlayCircle, Video } from "lucide-react";
 
 interface LessonProps {
   duration: string;
+  isCurrent?: boolean;
   onPlay: () => void;
   title: string;
 }
 
-export function Lesson({ duration, onPlay, title }: LessonProps) {
+export function Lesson({
+  duration,
+  isCurrent = false,
+  onPlay,
+  title,
+}: LessonProps) {
   return (
     <button
-      className="flex items-center gap-3 text-sm text-zinc-400"
+      className="flex items-center gap-3 text-sm text-zinc-400 data-[active=true]:text-emerald-400 enabled:hover:text-zinc-100"
+      data-active={isCurrent}
+      disabled={isCurrent}
       onClick={onPlay}
     >
-      <Video className="w-4 h-4 text-zinc-500" />
+      {isCurrent ? (
+        <PlayCircle className="w-4 h-4 text-emerald-400" />
+      ) : (
+        <Video className="w-4 h-4 text-zinc-500" />
+      )}
 
       <span>{title}</span>
       <span className="ml-auto font-mono text-xs text-zinc-500">
