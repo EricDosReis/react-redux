@@ -8,6 +8,9 @@ A simple Redux project.
 # install dependencies
 npm i
 
+# run the mocked api
+npm run server
+
 # run dev
 npm run dev
 ```

@@ -1,12 +1,14 @@
 import { describe, expect, it } from "vitest";
 
+import type { PlayerState } from "./player";
 import { next, play, player as reducer } from "./player";
 
-const initialStateMock = {
+const initialStateMock: PlayerState = {
   course: {
+    id: 1,
     modules: [
       {
-        id: "1",
+        id: 1,
         title: "Iniciando com React",
         lessons: [
           { id: "Jai8w6K_GnY", title: "CSS Modules", duration: "13:45" },
@@ -18,7 +20,7 @@ const initialStateMock = {
         ],
       },
       {
-        id: "2",
+        id: 2,
         title: "Estrutura da aplicação",
         lessons: [
           {
@@ -33,6 +35,7 @@ const initialStateMock = {
   },
   currentLessonIndex: 0,
   currentModuleIndex: 0,
+  isLoading: true,
 };
 
 describe("playe slice", () => {
